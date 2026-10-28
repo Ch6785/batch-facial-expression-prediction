@@ -1,18 +1,35 @@
 
-import cv2
-import joblib
 import os
 from collections import Counter
 from tkinter import Tk, filedialog
 
-# Load the trained model
-MODEL_PATH = "emotion_model.pkl"
-model = joblib.load(MODEL_PATH)
+import cv2
+from PIL import Image
+from transformers import pipeline
 
-# Face detector
-face_detector = cv2.CascadeClassifier(
-    cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+MODEL_NAME = "trpakov/vit-face-expression"
+
+print("Loading pretrained facial expression model...")
+classifier = pipeline(
+    "image-classification",
+    model=MODEL_NAME,
+    device=-1
 )
+
+face_detector = cv2.CascadeClassifier(
+    cv2.data.haarcascades
+    + "haarcascade_frontalface_default.xml"
+)
+
+EMOTION_MAP = {
+    "happy": "happy",
+    "sad": "sad",
+    "angry": "angry",
+    "neutral": "neutral",
+    "surprise": "happy",
+    "fear": "sad",
+    "disgust": "angry"
+}
 
 
 def predict_expression(image_path):
@@ -36,30 +53,48 @@ def predict_expression(image_path):
         return None
 
     # Select the largest face
-    x, y, w, h = max(faces, key=lambda face: face[2] * face[3])
+    x, y, w, h = max(
+        faces, key=lambda face: face[2] * face[3]
+    )
 
-    face = gray[y:y + h, x:x + w]
-    face = cv2.resize(face, (48, 48))
-    features = face.flatten().reshape(1, -1)
+    # Prepare face for pretrained model
+    face_bgr = image[y:y + h, x:x + w]
+    face_rgb = cv2.cvtColor(face_bgr, cv2.COLOR_BGR2RGB)
+    face_pil = Image.fromarray(face_rgb)
 
-    prediction = str(model.predict(features)[0]).lower()
+    predictions = classifier(face_pil, top_k=1)
 
-    # Mark the predicted expression
-    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
-    cv2.putText(
+    raw_emotion = predictions[0]["label"].lower()
+    confidence = predictions[0]["score"] * 100
+    emotion = EMOTION_MAP.get(raw_emotion, "neutral")
+
+    # Draw face box and predicted emotion
+    label = f"{emotion.upper()} ({confidence:.1f}%)"
+
+    cv2.rectangle(
         image,
-        prediction.upper(),
-        (x, max(y - 10, 20)),
-        cv2.FONT_HERSHEY_SIMPLEX,
-        0.8,
+        (x, y),
+        (x + w, y + h),
         (0, 255, 0),
         2
     )
 
-    output_path = os.path.splitext(image_path)[0] + "_prediction.jpg"
+    cv2.putText(
+        image,
+        label,
+        (x, max(y - 10, 25)),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.65,
+        (0, 255, 0),
+        2
+    )
+
+    output_path = (
+        os.path.splitext(image_path)[0] + "_prediction.jpg"
+    )
     cv2.imwrite(output_path, image)
 
-    return prediction
+    return emotion
 
 
 def main():
@@ -91,6 +126,7 @@ def main():
             total += 1
 
     print("\n===== EXPRESSION SUMMARY =====")
+
     for emotion in ["happy", "sad", "angry", "neutral"]:
         print(f"{emotion.capitalize()} = {results[emotion]}")
 
@@ -101,9 +137,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
