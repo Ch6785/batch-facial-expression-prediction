@@ -45,11 +45,17 @@ The program displays the predicted expression for each image, saves the images w
 
 **Example Output:**
 
-- Happy = 2
-- Sad = 0
-- Angry = 2
-- Neutral = 0
+- Happy = 1
+- Sad = 1
+- Angry = 1
+- Neutral = 1
 
-## 4. Link
 
-**GitHub Repository:** Add your GitHub repository URL here.
+
+## GitHub Repository
+
+Repository: [Batch Facial Expression Prediction](https://github.com/Ch6785/batch-facial-expression-prediction)
+
+## Related Project
+
+Project 1: [Facial Expression Recognition](https://github.com/Ch6785/facial-expression-recognition)
