@@ -1,5 +1,5 @@
 
-# Batch Facial Expression Prediction
+# Multi-Image Facial Expression Analysis
 
 ## 1. Description
 
