@@ -3,11 +3,15 @@
 
 ## 1. Description
 
-The Batch Facial Expression Prediction System predicts facial expressions from multiple images and counts the number of images classified as Happy, Sad, Angry, and Neutral.
+
+## 1. Description
+
+The Multi-Image Facial Expression Analysis System analyses multiple facial images, predicts the expressions displayed in each image, and calculates the total number of images classified as Happy, Sad, Angry, and Neutral.
 
 **Project Workflow:**
 
 Image Collection → Data Processing → Face Detection → Expression Prediction → Count Calculation → Result Analysis
+
 
 ## 2. Methodology
 
