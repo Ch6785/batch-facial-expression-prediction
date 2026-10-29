@@ -82,8 +82,5 @@ The following comparison shows the original input images alongside their corresp
 
 ## GitHub Repository
 
-Repository: [Batch Facial Expression Prediction](https://github.com/Ch6785/batch-facial-expression-prediction)
-
-## Related Project
-
-Project 1: [Facial Expression Recognition](https://github.com/Ch6785/facial-expression-recognition)
+Repository: [Multi-Image Facial Expression Analysis]
+(https://github.com/Ch6785/multi-image-facial-expression-analysis)
