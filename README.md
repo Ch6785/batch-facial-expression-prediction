@@ -1,3 +1,4 @@
+
 # Batch Facial Expression Prediction
 
 ## 1. Description
@@ -19,29 +20,54 @@ Image Collection → Data Processing → Face Detection → Expression Predictio
 
 ## 3. Input / Output
 
-### Input
+The following comparison shows the original input images alongside their corresponding predicted output images.
 
-Multiple facial images are provided to the system for expression prediction.
-
-![Input - Angry](images/angry.jpg)
-
-![Input - Happy](images/happy.jpg)
-
-![Input - Neutral](images/neutral.jpg)
-
-![Input - Sad](images/sad.jpg)
-
-### Output
-
-The program displays the predicted expression for each image, saves the images with predicted labels, and calculates the total count for each category.
-
-![Output - Angry](images/angry_prediction.jpg)
-
-![Output - Happy](images/happy_prediction.jpg)
-
-![Output - Neutral](images/neutral_prediction.jpg)
-
-![Output - Sad](images/sad_prediction.jpg)
+<table>
+  <tr>
+    <th>Input Images</th>
+    <th>Predicted Output</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Angry</b><br>
+      <img src="images/angry.jpg" width="250">
+    </td>
+    <td align="center">
+      <b>Angry Prediction</b><br>
+      <img src="images/angry_prediction.jpg" width="250">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Happy</b><br>
+      <img src="images/happy.jpg" width="250">
+    </td>
+    <td align="center">
+      <b>Happy Prediction</b><br>
+      <img src="images/happy_prediction.jpg" width="250">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Neutral</b><br>
+      <img src="images/neutral.jpg" width="250">
+    </td>
+    <td align="center">
+      <b>Neutral Prediction</b><br>
+      <img src="images/neutral_prediction.jpg" width="250">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Sad</b><br>
+      <img src="images/sad.jpg" width="250">
+    </td>
+    <td align="center">
+      <b>Sad Prediction</b><br>
+      <img src="images/sad_prediction.jpg" width="250">
+    </td>
+  </tr>
+</table>
 
 **Example Output:**
 
@@ -49,8 +75,6 @@ The program displays the predicted expression for each image, saves the images w
 - Sad = 1
 - Angry = 1
 - Neutral = 1
-
-
 
 ## GitHub Repository
 
