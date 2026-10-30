@@ -82,4 +82,4 @@ The following comparison shows the original input images alongside their corresp
 
 ## GitHub Repository
 
-Repository link : https://github.com/Ch6785/multi-image-facial-expression-analysis
+Repository link : https://github.com/Ch6785/multi-image-facial-recognition-analysis
